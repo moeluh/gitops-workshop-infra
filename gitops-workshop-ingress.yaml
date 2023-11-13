@@ -9,9 +9,12 @@ metadata:
     traefik.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - http:
-      paths:
-      - path: /app
-        backend:
-          serviceName: gitops-workshop-service
-          servicePort: 80
+    - http:
+        paths:
+        - path: /app
+          pathType: Prefix
+          backend:
+            service:
+              name: gitops-workshop-service
+              port:
+                number: 80
